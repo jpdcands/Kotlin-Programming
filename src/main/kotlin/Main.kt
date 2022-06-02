@@ -7,19 +7,34 @@ fun main() {
     var playerLevel: Int = 4
     println(playerLevel)
 
-    if (playerLevel == 1) {
-        println("Bubbles in the land of soft things.")
-    } else if (playerLevel <= 5) {
-        println("Save the town from the barbarian invasions.")
+val hasBefriendedBarbarians = true
+val hasAngeredBarbarians = false
+val playerClass = "paladin"
+val quest: String = if (playerLevel == 1) {
+        "Meet Mr.Bubbles in the land of soft things."
+    } else if (playerLevel in 2..5) {
+        // Check whether diplomacy is an option
+        val canTalkToBarbarians = !hasAngeredBarbarians &&
+            (hasBefriendedBarbarians || playerClass == "barbarian")
+
+        if (canTalkToBarbarians) {
+            "Convince the barbarians to call off their invasion."
+        } else {
+            "Save the town from the barbarian invasions."
+        }
     } else if (playerLevel == 6) {
-        println("Locate the enchanted sword.")
+        "Locate the enchanted sword."
     } else if (playerLevel == 7) {
-        println("Recover the long-lost artifact of creation.")
+        "Recover the long-lost artifact of creation."
     } else if (playerLevel == 8) {
-        println("Defeat Nogartse, bringer of death and eater of worlds.")
+        "Defeat Nogartse, bringer of death and eater of worlds."
     } else {
-        println("There are no quests right now.")
+        "There are no quests right now."
     }
+
+    println("The hero approaches the bounty board.  It reads:")
+    println(quest)
+
     println("Time passes...")
     println("The hero returns from her quest.")
 
